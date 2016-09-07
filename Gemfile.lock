@@ -52,7 +52,8 @@ GEM
     mime-types (2.6.1)
     minitest (5.7.0)
     multi_json (1.11.2)
-    mysql2 (0.3.18)
+    pg (0.18.4)
+    pg (0.18.4-x64-mingw32)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -107,12 +108,13 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
-  mysql2
+  pg
   rails (= 4.1.8)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
@@ -122,4 +124,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.10.4
+   1.12.5
