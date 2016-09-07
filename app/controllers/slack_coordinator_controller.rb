@@ -18,7 +18,8 @@ class SlackCoordinatorController < ApplicationController
   before_filter :find_user
 
   def receive
-    puts params
+    #puts params
+    logger.warn request.raw_post
 
     json_result = { text: 'Yea I heard you' }
     case command
@@ -139,7 +140,7 @@ class SlackCoordinatorController < ApplicationController
   end
 
   def command
-    params[:trigger_word].sub('.', '')
+    params[:trigger_word]&.sub('.', '')
   end
 
   def pluralize_players(count)
