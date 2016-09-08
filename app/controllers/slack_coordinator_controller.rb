@@ -57,18 +57,20 @@ class SlackCoordinatorController < ApplicationController
         game = GameCreationService.create(@user)
         json_result[:text] = "#{@user} is starting a new game. Need #{game.players_needed_to_start} more #{pluralize_players(game.players_needed_to_start)} to start."
       rescue GameCreationService::GameInProgressError, GameCreationService::GameInSetupError => e
-        game = GameJoiningService.join(@user)
-        if game
-          if game.in_progress?
-            json_result[:text] = "#{@user} has joined the game.\nTTT\n#{game.suggested_matchup}"
+        begin
+          game = GameJoiningService.join(@user)
+          if game
+            if game.in_progress?
+              json_result[:text] = "#{@user} has joined the game.\nTTT\n#{game.suggested_matchup}"
+            else
+              json_result[:text] = "#{@user} has successfully joined the game. Need #{game.players_needed_to_start} more #{pluralize_players(game.players_needed_to_start)} to start."
+            end
           else
-            json_result[:text] = "#{@user} has successfully joined the game. Need #{game.players_needed_to_start} more #{pluralize_players(game.players_needed_to_start)} to start."
+            json_result[:text] = 'No game could be joined.'
           end
-        else
-          json_result[:text] = 'No game could be joined.'
-        end
         rescue GameJoiningService::UserAlreadyJoinedError
           json_result[:text] = "#{@user} has already joined the game being set up."
+        end
       end
     
     when 'quit'
