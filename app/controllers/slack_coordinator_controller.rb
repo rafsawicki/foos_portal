@@ -19,6 +19,7 @@ class SlackCoordinatorController < ApplicationController
 
   def receive
     puts params
+    puts request.body.read 
 
     json_result = { text: 'Yea I heard you' }
     case command
