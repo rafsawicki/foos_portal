@@ -67,8 +67,8 @@ class SlackCoordinatorController < ApplicationController
         else
           json_result[:text] = 'No game could be joined.'
         end
-      rescue GameJoiningService::UserAlreadyJoinedError
-        json_result[:text] = "#{@user} has already joined the game being set up."
+        rescue GameJoiningService::UserAlreadyJoinedError
+          json_result[:text] = "#{@user} has already joined the game being set up."
       end
     
     when 'quit'
