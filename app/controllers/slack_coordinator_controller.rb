@@ -81,7 +81,7 @@ class SlackCoordinatorController < ApplicationController
         json_result[:text] = 'There is no game to abandon. Type _.foos_ to start a new one.'
       end
 
-    when 'out'
+    when 'out', '-'
       begin
         game = GameQuittingService.quit(@user)
         if game
