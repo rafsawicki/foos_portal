@@ -18,8 +18,8 @@ class SlackCoordinatorController < ApplicationController
   before_filter :find_user
 
   def receive
-    puts params
-    puts request.body.read 
+    #puts params
+    puts request.raw_post
 
     json_result = { text: 'Yea I heard you' }
     case command
