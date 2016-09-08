@@ -159,7 +159,7 @@ class SlackCoordinatorController < ApplicationController
   end
 
   def command
-    params[:trigger_word]&.sub('.', '')
+    params[:trigger_word].sub('.', '')
   end
 
   def pluralize_players(count)
