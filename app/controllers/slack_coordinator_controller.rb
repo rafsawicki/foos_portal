@@ -19,7 +19,7 @@ class SlackCoordinatorController < ApplicationController
 
   def receive
     #puts params
-    logger.debug request.raw_post
+    logger.warn request.raw_post
 
     json_result = { text: 'Yea I heard you' }
     case command
