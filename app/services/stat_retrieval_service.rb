@@ -21,7 +21,9 @@ class StatRetrievalService
 
     def rankings(limit: 1000)
       ranked_users = []
-      User.order('rank desc').limit(limit).each do |u|
+      last_game_after = Time.zone.now - 28.day
+      User.where("updated_at >= :last_game_after", {last_game_after: last_game_after})
+        .order('rank desc').limit(limit).each do |u|
         wins = u.games_won
         losses = u.games_lost
         win_ratio = User.calculate_win_ratio(wins, wins + losses)
