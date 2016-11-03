@@ -102,7 +102,7 @@ class SlackCoordinatorController < ApplicationController
         result = ResultCreationService.create(@user)
         game = result.game
         if game.finished?
-          json_result[:text] = "Recorded win for #{@user}. All wins reported."
+          json_result[:text] = "Recorded win for #{@user}. All wins reported.\n" + StatRetrievalService.rankings_string(limit: 20)
         else
           json_result[:text] = "Recorded win for #{@user}. Need #{game.players_needed_to_finish} more #{pluralize_players(game.players_needed_to_finish)} to report a win."
         end
